@@ -1,0 +1,16 @@
+Atividade 1
+
+	Sim. Isso ocorre porque, após a criação de cada um deles, a execução fica a cargo do sistema operacional. Assim, a ordem de execução depende da troca de contexto e, com isso, as impressões do programa mudam de ordem a cada execução. Logo, há um não-determinismo no resultado final.
+
+
+Atividade 2
+	
+	O não-determinismo prossegue, pois não houve controle de execução das threads. Porém, como a função executada pelas threads recebe um argumento, que é a ordem de execução de cada uma delas, conseguimos saber qual está sendo executada.
+	
+Atividade 3
+
+	Sim, aparecem as impressões indicando o número da ordem da thread para a identificação da execução e e o número total de threads no programa. Como ainda não há controle da ordem de execução, o resultado final é indeterminado.
+	
+Atividade 4
+
+	Sim. Agora, a última impressão, que imprime o fim da thread principal, é sempre impressa por último. Isso ocorre porque, após a criação de todas as threads, cada uma delas é "unida" a thread principal pela função join. Logo, enquanto todas não encerrarem, a thread principal não continua seu fluxo. Com isso, é garantido a impressão final somente ao fim das 10 threads criadas.
