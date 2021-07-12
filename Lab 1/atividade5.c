@@ -1,7 +1,7 @@
 /* Disciplina: Computacao Concorrente */
 /* Aluno.: Thiago Castro */
 /* Módulo 1 - Laboratório: 1 */
-/* Código: Elevar ao quadrado todos os 10000 elementosde um vetor */
+/* Código: Elevar ao quadrado todos os 10000 elementos de um vetor */
 
 #include <stdio.h>
 #include <stdlib.h>
