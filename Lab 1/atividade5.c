@@ -69,7 +69,7 @@ int main()
 
     if (pthread_create(&tid_sistema[1], NULL, eleva_ao_quadrado, (void *) &segunda_metade))
     {
-        printf("Erro de criação da thread 1.\n");
+        printf("Erro de criação da thread 2.\n");
         exit(1);
     }
 
