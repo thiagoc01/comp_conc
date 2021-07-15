@@ -18,13 +18,28 @@
 
 #define NUM_ELEMENTOS 10000
 
-int vetor[NUM_ELEMENTOS];
+int vetor[NUM_ELEMENTOS], vetor_teste[NUM_ELEMENTOS];
 
 typedef struct
 {
     int piso;
     int teto;
 }args_thread_t;
+
+void testa_vetor()
+{
+    for (int i = 0 ; i < NUM_ELEMENTOS ; i++)
+    {
+        if (vetor[i] != vetor_teste[i] * vetor_teste[i])
+        {
+            printf("%dº valor está incorreto. Atual: %d, esperado: %d.\n", i + 1, vetor[i], vetor_teste[i] * vetor_teste[i]);
+            exit(255);
+        }
+
+        printf("%dº elemento: %d\n", i+1, vetor[i]);
+    }
+
+}
 
 
 void *eleva_ao_quadrado (void *arg) 
@@ -56,6 +71,7 @@ int main()
     for (int i = 0 ; i < NUM_ELEMENTOS ; i++)
     {
         vetor[i] = rand() % 50;
+        vetor_teste[i] = vetor[i];
         printf("%dº elemento: %d\n", i+1, vetor[i]);
     }
 
@@ -64,29 +80,28 @@ int main()
     if (pthread_create(&tid_sistema[0], NULL, eleva_ao_quadrado, (void *) &primeira_metade))
     {
         printf("Erro de criação da thread 1.\n");
-        exit(1);
+        exit(255);
     }
 
     if (pthread_create(&tid_sistema[1], NULL, eleva_ao_quadrado, (void *) &segunda_metade))
     {
-        printf("Erro de criação da thread 2.\n");
-        exit(1);
+        printf("Erro de criação da thread 1.\n");
+        exit(255);
     }
 
     if (pthread_join(tid_sistema[0], NULL))
     {
         printf("Erro ao aguardar thread 1.\n");
-        exit(1);
+        exit(255);
     }
 
     if (pthread_join(tid_sistema[1], NULL))
     {
         printf("Erro ao aguardar thread 2.\n");
-        exit(1);
+        exit(255);
     }
-
-    for (int i = 0 ; i < NUM_ELEMENTOS ; i++)
-        printf("%dº elemento: %d\n", i+1, vetor[i]);
+    
+    testa_vetor();
   
     return 0;
 }
