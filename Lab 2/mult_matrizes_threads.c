@@ -58,15 +58,29 @@ void testa_resultado()
 void inicializa_matrizes()
 {
     matriz1_entrada = (float *) malloc (sizeof(float) * dimensao_matriz * dimensao_matriz);
+
+    if (!matriz1_entrada)
+    {
+        printf("Erro de alocação de memória.\n");
+        exit(255);
+    }
+
     matriz2_entrada = (float *) malloc (sizeof(float) * dimensao_matriz * dimensao_matriz);
+
+    if (!matriz2_entrada)
+    {
+        printf("Erro de alocação de memória.\n");
+        free(matriz1_entrada);
+        exit(255);
+    }
+
     matriz_saida = (float *) malloc (sizeof(float) * dimensao_matriz * dimensao_matriz);
 
-    if (!matriz1_entrada || !matriz2_entrada || !matriz_saida)
+    if (!matriz_saida)
     {
         printf("Erro de alocação de memória.\n");
         free(matriz1_entrada);
         free(matriz2_entrada);
-        free(matriz_saida);
         exit(255);
     }
 
@@ -109,23 +123,21 @@ void inicializa_threads()
 {
     pthread_t *ids_threads = (pthread_t *) malloc(sizeof(pthread_t) * numero_threads);
 
-    int *linhas_iniciais = (int *) malloc(sizeof(int) * numero_threads); // Guarda o ponto de partida para cada thread
-
     if (!ids_threads)
     {
         printf("Erro de alocação de memória para vetor de threads.\n");
         libera_memoria_matrizes();
-        free(ids_threads);
-        free(linhas_iniciais);
         exit(255);
     }
 
+    int *linhas_iniciais = (int *) malloc(sizeof(int) * numero_threads); // Guarda o ponto de partida para cada thread
+
+    
     if (!linhas_iniciais)
     {
         printf("Erro de alocação de memória para vetor de argumentos.\n");
         libera_memoria_matrizes();
         free(ids_threads);
-        free(linhas_iniciais);
         exit(255);
     }
  
