@@ -60,11 +60,11 @@ int exibe_resultados(pthread_t *ids_threads)
 {
     retorno_t resultado, *retorno;
 
-    retorno = (retorno_t *) malloc(sizeof(retorno_t) * num_threads);
+    retorno = (retorno_t *) malloc(sizeof(retorno_t));
 
     if (!retorno)
     {
-        fputs("Erro de alocação de memória para o vetor de retornos das threads.", stderr);
+        fputs("Erro de alocação de memória para a variável de retorno das threads.", stderr);
         free(ids_threads);
         free(vetor);
         return 1;
@@ -76,6 +76,7 @@ int exibe_resultados(pthread_t *ids_threads)
         {
             fprintf(stderr, "Erro de espera da thread %lld.\n", i);
             free(ids_threads);
+            free(retorno);
             free(vetor);
             return 1;
         }
@@ -119,9 +120,7 @@ void inicializa_vetor()
     }
 
     for (int i = 0 ; i < tam_vetor ; i++)
-    {
         vetor[i] = ((float)rand()/(float)(RAND_MAX)) * 1000000.0;
-    }
 }
 
 void inicializa_threads()
