@@ -130,8 +130,6 @@ int inicializa_threads()
         if (pthread_create(&tids[i], NULL, soma_valores_vetor, (void *) &args[i]))
         {
             printf("Erro ao criar a thread %ld.\n", i);
-            pthread_mutex_destroy(&mutex);
-            pthread_cond_destroy(&cond_espera);
             return 1;
         }
     }
@@ -141,8 +139,6 @@ int inicializa_threads()
         if (pthread_join(tids[i], (void **) &ponte_retorno))
         {
             printf("Erro ao aguardar a thread %ld.\n", i);
-            pthread_mutex_destroy(&mutex);
-            pthread_cond_destroy(&cond_espera);
             return 2;            
         }
 
