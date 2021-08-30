@@ -92,7 +92,12 @@ public class Atividade
 		}
 		catch (NumberFormatException e)
 		{
-			System.out.println("Digite " + "<nome do programa>" + "<número de threads> + <tamanho do vetor>.");
+			System.out.println("Digite <nome do programa> <número de threads> <tamanho do vetor>.");
+			return false;
+		}
+		catch (IndexOutOfBoundsException e)
+		{
+			System.out.println("Digite <nome do programa> <número de threads> <tamanho do vetor>.");
 			return false;
 		}
 
