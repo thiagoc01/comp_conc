@@ -1,3 +1,9 @@
+/* Disciplina: Computação Concorrente */
+/* Aluno: Thiago Castro */
+/* Módulo 3 - Laboratório: 8 */
+/* Código: Imprimir quatro mensagens com condições de ordem utilizando semáforos em C. */
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
